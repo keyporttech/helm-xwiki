@@ -12,9 +12,8 @@ metadata:
   {{- end }}
     version: "{{ .Chart.AppVersion }}"
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
-spec:  
+spec:
   replicas: {{ .Values.replicaCount }}
-  serviceName: {{ template "fullname" . }}
   selector:
     matchLabels:
       app: {{ template "fullname" . }} # has to match .spec.template.metadata.labels
@@ -39,16 +38,8 @@ spec:
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
-        {{- if .Values.mysql.enabled }}
-              name: "{{ .Release.Name }}-mysql"
-              key: mysql-password
-        {{- else if .Values.postgresql.enabled }}
-              name: "{{ .Release.Name }}-postgresql"
-              key: postgresql-password
-        {{- else }}
-              name: {{ .Release.Name | quote }}
+              name: {{ template "fullname" . }}
               key: DB_PASSWORD
-        {{- end }}
         {{- if .Values.solr.enabled }}
         - name: INDEX_HOST
           valueFrom:
@@ -83,8 +74,16 @@ spec:
           mountPath: /opt/solr/server/solr
       volumes:
       - name: xwiki-data
+      {{- if eq .Values.storageType "pvc" }}
         persistentVolumeClaim:
           claimName: xwiki
+      {{- else if eq .Values.storageType "directVolume" }}
+{{ toYaml .Values.storageVolume | indent 8 }}
+      {{- else }}
+        emptyDir: {}
+      {{- end -}}
+
+{{- if eq .Values.storageType "pvc" }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -101,3 +100,4 @@ spec:
     {{- if .Values.storageClass }}
     storageClassName: {{ .Values.storageClass | quote }}
     {{- end }}
+{{- end }}
