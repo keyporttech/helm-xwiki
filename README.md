@@ -1,5 +1,7 @@
 # XWiki Helm Chart
 
+This is the keyport tech adaption of xwiki-helm. Main change includes for direct volume mount of wiki-data storage
+
 This is the XWiki [Helm Chart](https://helm.sh/docs/developing_charts) aiming to ease the deployment in both Local and Highly Available setups.  
 
 
@@ -34,7 +36,7 @@ helm --debug upgrade -i --force xwiki -f ./values.yaml .
 
 ## Usage
 
-Get ip address of minikube 
+Get ip address of minikube
 
 ```bash
 ip=$(minikube ip)
