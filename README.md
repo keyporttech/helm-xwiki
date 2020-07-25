@@ -1,6 +1,6 @@
 # XWiki Helm Chart
 
-This is the keyport tech adaption of xwiki-helm. Main change includes for direct volume mount of wiki-data storage
+This is the keyport tech adaption of xwiki-helm. The main changes include direct volume mount of wiki-data storage
 
 This is the XWiki [Helm Chart](https://helm.sh/docs/developing_charts) aiming to ease the deployment in both Local and Highly Available setups.  
 
@@ -28,10 +28,10 @@ minikube addons enable ingress
 * Install chart
 
 ```bash
-git clone https://github.com/xwiki-contrib/xwiki-helm
-cd xwiki-helm-chart
+git clone https://github.com/keyporttech/helm-xwiki.git
+cd helm-xwiki
 helm dependency update
-helm --debug upgrade -i --force xwiki -f ./values.yaml .
+helm --debug upgrade -i --force helm-xwiki -f ./values.yaml .
 ```
 
 ## Usage
@@ -45,10 +45,10 @@ curl $ip
 
 ## Test
 
-For testing first add [unittest](https://github.com/lrills/helm-unittest#install)
+Chart linting and installation tests
+
 ```bash
-helm plugin install https://github.com/lrills/helm-unittest
-helm unittest xwiki-helm
+make build
 ```
 
 ## Project Information
