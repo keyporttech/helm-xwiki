@@ -31,6 +31,28 @@ make build
 
 Most configurable values are similar to other helm charts generated via helm create. The configurations specific to this chart are listed below.
 
+### Ingress controller
+
+When the ingress controller is enabled the admin UI is available via:
+
+ http(s)://host.domain.com/dynamodb
+
+Example with with using nginx controller and CertificateManager letsencrypt TLS issuer:
+
+```yaml
+ingress:
+  enabled: false
+  host: my-host
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    #   ingress.kubernetes.io/rewrite-target: /
+  tls:
+  # Secrets must be manually created in the namespace.
+  - secretName: wiki-tls
+    hosts:
+      - myhost
+```
+
 ## Resources
 
 * XWiki Installation Guide: https://www.xwiki.org/xwiki/bin/view/Documentation/AdminGuide/Installation
