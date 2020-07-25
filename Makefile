@@ -55,7 +55,7 @@ test:
 build: check-version lint test
 .PHONY: build
 
-ublish-local-registry:
+publish-local-registry:
 	REGISTRY_TAG=${REGISTRY}/${CHART}:${VERSION}
 	@echo "publishing to ${REGISTRY_TAG}"
 	HELM_EXPERIMENTAL_OCI=1 helm chart save ./ ${REGISTRY_TAG}
