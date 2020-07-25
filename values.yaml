@@ -47,7 +47,7 @@ postgresql:
   postgresqlDatabase: xwiki
   image:
     tag: 11.3.0-debian-9-r38
-  #persistence:
+  # persistence:
   #  size: 8Gi
 
 ##
@@ -86,8 +86,6 @@ ingress:
 istio:
   enabled: false
   host: "*"
-
-
 
 ## Read about PostDistribution budget at https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
 ## Use only on a clustered setup

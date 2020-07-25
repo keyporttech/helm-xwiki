@@ -1,18 +1,73 @@
-apiVersion: v1
-description: helm chart for xwiki
+# Copyright 2020 Keyporttech Inc.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#     http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# The chart API version (required)
+apiVersion: v2
+
+# The name of the chart (required)
 name: xwiki
-version: 11.stable
-appVersion: 11-stable
-description: XWiki is a free wiki software platform written in Java with a design emphasis on extensibility. XWiki is an enterprise wiki. It includes WYSIWYG editing, OpenDocument based document import/export, semantic annotations and tagging, and advanced permissions management.
+
+# A SemVer 2 (https://semver.org/) version (required).
+# This is the chart version. This version number should be incremented each
+# time you make changes to the chart and its templates, including the
+# appVersion.
+version: 0.1.0
+
+# A SemVer range of compatible Kubernetes versions (optional)
+# kubeVersion:
+
+# A single-sentence description of this project (optiona  Versions are expected to follow Semantic Versioningl)
+description: Helm chart for xwiki.
+
+# The type of the chart (optional).
+type: application
+
+# A list of keywords about this project (optional)
 keywords:
 - xwiki
-home: http://xwiki.org
-icon: hhttps://www.xwiki.org/xwiki/bin/download/Main/Logo/logo-x.png
+
+# The URL of this projects home page (optional)
+home: https://github.com/keyporttech/helm-xwiki
+
+# A list of URLs to source code for this project (optional)
 sources:
 - https://github.com/xwiki-contrib/docker-xwiki
 - https://github.com/keyporttech/charts
+
+# A list of the chart requirements (optional)
+# dependencies:
+#  - name:
+#    repository:
+#    version:
+#    condition:
+
+# Support contacts (optional)
 maintainers:
 - name: John Felten
-  email: john@keyporttech.com
+  email: john.felten@keyporttech.com
 - name: John Felten
-  email: john@keyporttech.com
+  email: john.felten@keyporttech.com
+
+# A URL to an SVG or PNG image to be used as an icon (optional)
+icon: hhttps://www.xwiki.org/xwiki/bin/download/Main/Logo/logo-x.png
+
+# The version of the app that this contains (optional). This needn't be SemVer.
+# This is the version number of the application being deployed. This version
+# number should be incremented each time you make changes to the application.
+# This should reflect the version the application in use.
+appVersion: 11.10.816
+
+# Whether this chart is deprecated (optional, boolean)
+# deprecated:
+
+# A list of annotations keyed by name (optional)
+# annotations:
+#  example:
