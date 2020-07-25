@@ -55,7 +55,7 @@ test:
 build: check-version lint test
 .PHONY: build
 
-publish-local-registry:
+ublish-local-registry:
 	REGISTRY_TAG=${REGISTRY}/${CHART}:${VERSION}
 	@echo "publishing to ${REGISTRY_TAG}"
 	HELM_EXPERIMENTAL_OCI=1 helm chart save ./ ${REGISTRY_TAG}
@@ -67,20 +67,21 @@ publish-local-registry:
 publish-public-repository:
 	#docker run -e GITHUB_TOKEN=${GITHUB_TOKEN} -v `pwd`:/charts/$(CHART) registry.keyporttech.com:30243/chart-testing:0.1.4 bash -cx " \
 	#echo $GITHUB_TOKEN; \
+	rm -f *.tgz
 	helm package .;
 	curl -o releaseChart.sh https://raw.githubusercontent.com/keyporttech/helm-charts/master/scripts/releaseChart.sh; \
 	chmod +x releaseChart.sh; \
-	./releaseChart.sh $(CHART) $(VERSION) .;
+	./releaseChart.sh $(CHART) $(VERSION) $(CWD);
 .PHONY: publish-public-repository
 
 deploy: publish-local-registry publish-public-repository
 	rm -rf /tmp/helm-$(CHART)
+	rm -rf helm-charts
 	git clone git@github.com:keyporttech/helm-$(CHART).git /tmp/helm-$(CHART)
-	cd /tmp/helm-$(CHART) && git remote add downstream ssh://git@git.keyporttech.com:30222/keyporttech/helm-xwiki.git
+	cd /tmp/helm-$(CHART) && git remote add downstream ssh://git@git.keyporttech.com:30222/keyporttech/helm-$(CHART).git
 	cd /tmp/helm-$(CHART) && git config --global user.email "bot@keyporttech.com"
 	cd /tmp/helm-$(CHART) && git config --global user.name "keyporttech-bot"
 	cd /tmp/helm-$(CHART) && git fetch downstream master
 	cd /tmp/helm-$(CHART) && git fetch origin
 	cd /tmp/helm-$(CHART) && git push -u origin downstream/master:master --force-with-lease
 .PHONY:deploy
-
