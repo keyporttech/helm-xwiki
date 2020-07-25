@@ -52,6 +52,17 @@ ingress:
     hosts:
       - myhost
 ```
+## Storage
+
+storageType is type of storage for the volume: pvc, emptyDir or directVolume.
+
+Defaults to emptyDir.
+```yaml
+storageType: emptyDir
+```
+A mysql or postgresql database server can be deployed.
+
+Defaults to postgresql.
 
 ## Resources
 
