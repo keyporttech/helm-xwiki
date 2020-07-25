@@ -19,7 +19,7 @@ name: xwiki
 # This is the chart version. This version number should be incremented each
 # time you make changes to the chart and its templates, including the
 # appVersion.
-version: 0.1.0
+version: 0.1.1
 
 # A SemVer range of compatible Kubernetes versions (optional)
 # kubeVersion:
