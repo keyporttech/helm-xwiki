@@ -66,14 +66,14 @@ publish-local-registry:
 
 publish-public-repository:
 	#docker run -e GITHUB_TOKEN=${GITHUB_TOKEN} -v `pwd`:/charts/$(CHART) registry.keyporttech.com:30243/chart-testing:0.1.4 bash -cx " \
-	#	echo $GITHUB_TOKEN; \
+	#echo $GITHUB_TOKEN; \
 	helm package .;
 	curl -o releaseChart.sh https://raw.githubusercontent.com/keyporttech/helm-charts/master/scripts/releaseChart.sh; \
 	chmod +x releaseChart.sh; \
 	./releaseChart.sh $(CHART) $(VERSION) .;
 .PHONY: publish-public-repository
 
-deploy: #publish-local-registry publish-public-repository
+deploy: publish-local-registry publish-public-repository
 	rm -rf /tmp/helm-$(CHART)
 	git clone git@github.com:keyporttech/helm-$(CHART).git /tmp/helm-$(CHART)
 	cd /tmp/helm-$(CHART) && git remote add downstream ssh://git@git.keyporttech.com:30222/keyporttech/helm-xwiki.git
