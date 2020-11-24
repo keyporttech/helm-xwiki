@@ -1,8 +1,7 @@
 apiVersion: v1
-description: helm chart for xwiki
 name: xwiki
-version: 11.stable
-appVersion: 11-stable
+version: 10.1.22.6.5
+appVersion: 12.6.5
 description: XWiki is a free wiki software platform written in Java with a design emphasis on extensibility. XWiki is an enterprise wiki. It includes WYSIWYG editing, OpenDocument based document import/export, semantic annotations and tagging, and advanced permissions management.
 keywords:
 - xwiki
