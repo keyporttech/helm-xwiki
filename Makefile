@@ -21,7 +21,4 @@ generate-docs:
 	@echo "generating documentation..."
 	@echo "generating README.md"
 	helm-docs --chart-search-root=./ --template-files=./README.md.gotmpl --template-files=./_templates.gotmpl --output-file=./README.md --log-level=trace
-	sed -i 's/pipelineVer/$(TEKTON_PIPELINE_VERSION)/g' ./README.md
-	sed -i 's/triggerVer/$(TEKTON_TRISGGERS_VERISON)/g' ./README.md
-	sed -i 's/dashboardVer/$(TEKTON_DASHBOARD_VERSION)/g' ./README.md
 .PHONY: generate-docs
