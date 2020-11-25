@@ -22,3 +22,13 @@ generate-docs:
 	@echo "generating README.md"
 	helm-docs --chart-search-root=./ --template-files=./README.md.gotmpl --template-files=./_templates.gotmpl --output-file=./README.md --log-level=trace
 .PHONY: generate-docs
+
+lint:
+	@echo "linting..."
+	helm repo add google https://charts.helm.sh/stable
+	helm lint
+	helm template test ./
+	ct lint --validate-maintainers=false --charts .
+	echo "NEW CHART VERISION=$(VERSION)"
+	echo "CURRENT RELEASED CHART VERSION=$(RELEASED_VERSION)"
+.PHONY: lint
