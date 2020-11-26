@@ -59,6 +59,9 @@ postgresql:
   postgresqlDatabase: xwiki
   image:
     tag: 11.3.0-debian-9-r38
+  persistence:
+    # postgresqk.persistence.enabled -- see postsql chart docs for persistence set up
+    enabled: false
   # persistence:
   #  size: 8Gi
 

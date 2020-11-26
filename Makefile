@@ -32,3 +32,9 @@ lint:
 	echo "NEW CHART VERISION=$(VERSION)"
 	echo "CURRENT RELEASED CHART VERSION=$(RELEASED_VERSION)"
 .PHONY: lint
+
+	test:
+		@echo "testing..."
+		ct install --charts .
+		@echo "OK"
+	.PHONY: test
