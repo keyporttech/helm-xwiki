@@ -9,7 +9,7 @@ image:
   # image.pullPolicy -- image name
   pullPolicy: IfNotPresent
   # image.tag -- image tag
-  tag: 12.6.5
+  tag: 12.9.0-postgres-tomcat
 service:
   # service.portName -- name of the port
   portName: node
