@@ -19,7 +19,7 @@ name: xwiki
 # This is the chart version. This version number should be incremented each
 # time you make changes to the chart and its templates, including the
 # appVersion.
-version: 0.1.1
+version: 0.2.0
 
 # A SemVer range of compatible Kubernetes versions (optional)
 # kubeVersion:
@@ -63,7 +63,7 @@ icon: hhttps://www.xwiki.org/xwiki/bin/download/Main/Logo/logo-x.png
 # This is the version number of the application being deployed. This version
 # number should be incremented each time you make changes to the application.
 # This should reflect the version the application in use.
-appVersion: 11.10.816
+appVersion: 12.9.0
 
 # Whether this chart is deprecated (optional, boolean)
 # deprecated:
@@ -71,3 +71,13 @@ appVersion: 11.10.816
 # A list of annotations keyed by name (optional)
 # annotations:
 #  example:
+
+dependencies:
+  - name: mysql
+    repository: https://charts.helm.sh/stable
+    version: 1.6.9
+    condition: mysql.enabled
+  - name: postgresql
+    repository: https://charts.helm.sh/stable
+    version: 8.6.4
+    condition: postgresql.enabled

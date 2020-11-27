@@ -1,0 +1,51 @@
+# XWiki Helm Chart
+
+This is the keyport tech adaption of xwiki-helm. Main change includes for direct volume mount of wiki-data storage
+
+This is the XWiki [Helm Chart](https://helm.sh/docs/developing_charts) aiming to ease the deployment in both Local and Highly Available setups.
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+{{ template "chart.description" . }}
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "extra.introduction" . }}
+
+{{ template "chart.requirementsSection" . }}
+{{ template "extra.requirementsSection" . }}
+
+## Installing the Chart
+
+This chart is published in [keyporttech/charts](https://github.com/keyporttech/helm-charts). To install the chart, first add the keyporttech helm repo:
+```bash
+helm repo add keyporttech https://keyporttech.github.io/helm-charts/
+```
+Then to install with the release name `xwiki` in the namespace `xwiki` with the customized values in custom_values.yaml run:
+
+```bash
+$ helm install -- values custom_values.yaml --name {{ template "chart.name" . }} --namespace {{ template "chart.name" . }} keyporttech/{{ template "chart.name" .}}
+```
+or locally:
+
+```bash
+$ helm install --name {{ template "chart.name" . }} --namespace  {{ template "chart.name" . }}.
+```
+> **Tip**: You can use the default [values.yaml](values.yaml)
+
+
+{{ template "extra.chartUninstall" . }}
+
+{{ template "extra.ingress" . }}
+
+{{ template "extra.configuration" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "extra.contributing" . }}

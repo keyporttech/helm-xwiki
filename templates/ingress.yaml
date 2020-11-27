@@ -1,5 +1,5 @@
 {{- if .Values.ingress.enabled -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "fullname" . }}
@@ -13,13 +13,15 @@ spec:
   rules:
    - host: {{ .Values.ingress.host }}
      http:
-      paths:
-      - path: /
-        backend:
-          serviceName: {{ template "fullname" . }}
-          servicePort: {{ .Values.service.externalPort }}
-  {{- if .Values.ingress.tls }}
+       paths:
+       - pathType: Prefix
+         path: /
+         backend:
+          service:
+            name: {{ template "fullname" . }}
+            port:
+              number: {{ .Values.service.externalPort }}
   tls:
 {{ toYaml .Values.ingress.tls | indent 4 }}
-  {{- end }}
+
 {{- end -}}
