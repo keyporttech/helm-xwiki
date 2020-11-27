@@ -17,7 +17,24 @@ This is the XWiki [Helm Chart](https://helm.sh/docs/developing_charts) aiming to
 {{ template "chart.requirementsSection" . }}
 {{ template "extra.requirementsSection" . }}
 
-{{ template "extra.chartInstallation" . }}
+## Installing the Chart
+
+This chart is published in [keyporttech/charts](https://github.com/keyporttech/helm-charts). To install the chart, first add the keyporttech helm repo:
+```bash
+helm repo add keyporttech https://keyporttech.github.io/helm-charts/
+```
+Then to install with the release name `xwiki` in the namespace `xwiki` with the customized values in custom_values.yaml run:
+
+```bash
+$ helm install -- values custom_values.yaml --name {{ template "chart.name" . }} --namespace {{ template "chart.name" . }} keyporttech/{{ template "chart.name" .}}
+```
+or locally:
+
+```bash
+$ helm install --name {{ template "chart.name" . }} --namespace  {{ template "chart.name" . }}.
+```
+> **Tip**: You can use the default [values.yaml](values.yaml)
+
 
 {{ template "extra.chartUninstall" . }}
 
